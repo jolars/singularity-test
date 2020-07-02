@@ -37,7 +37,7 @@ from: julia:1.4.2-buster
     git clone https://github.com/jolars/singularity-test
     cd singularity-test
 
-    julia -e "using Pkg; Pkg.activate(\".\"); Pkg.instantiate(); Pkg.build(); Pkg.precompile()"
+    julia --project=. -e "using Pkg; Pkg.activate(\".\"); Pkg.instantiate(); Pkg.build(); Pkg.precompile()"
 
     chmod -R 645 /opt/julia
 
