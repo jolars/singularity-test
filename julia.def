@@ -1,6 +1,9 @@
 Bootstrap: docker
 from: ubuntu:20.04
 
+%environment
+    export JULIA_PKGDIR="/opt/.julia"
+
 %post
     export JULIA_VER_MAJORMINOR=1.4
     export JULIA_VER=1.4.2
