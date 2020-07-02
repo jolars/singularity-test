@@ -2,7 +2,6 @@ Bootstrap: docker
 from: ubuntu:20.04
 
 %post
-    export JULIA_PKGDIR="/opt/.julia"
     export JULIA_VER_MAJORMINOR=1.4
     export JULIA_VER=1.4.2
     export JULIA_TARBALL=julia-$JULIA_VER-linux-x86_64.tar.gz
@@ -23,23 +22,8 @@ from: ubuntu:20.04
     mv /julia-$JULIA_VER /opt/
     ln -s /opt/julia-$JULIA_VER/bin/julia /usr/local/bin/julia
 
-    # chown -R root:root /opt
-
-    # # update julia
-    # julia -e 'using Pkg; Pkg.update()'
-    #
-    # # install julia packages
-    # julia -e 'using Pkg; Pkg.add("Plots")'
-    # julia -e 'using Pkg; Pkg.add("StatPlots")'
-    # julia -e 'using Pkg; Pkg.add("Distributions")'
-    # julia -e 'using Pkg; Pkg.add("LinearAlgebra")'
-    # julia -e 'using Pkg; Pkg.add("Statistics")'
-    #
-    # # build and precompile
-    # julia -e 'using Pkg; Pkg.build()'
-    # julia -e 'using Pkg; Pkg.precompile()'
-
-    chown -R root:users /opt/.julia
-
     # clean up
     rm $JULIA_TARBALL
+
+%runscript
+    julia test.jl
