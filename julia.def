@@ -2,7 +2,11 @@ Bootstrap: docker
 from: ubuntu:20.04
 
 %environment
-    export JULIA_PKGDIR="/opt/.julia"
+    JULIA_PKGDIR="/opt/.julia"
+    JULIA_DEPOT_PATH="/opt/.julia"
+
+    export JULIA_PKGDIR
+    export JULIA_DEPOT_PATH
 
 %post
     export JULIA_VER_MAJORMINOR=1.4
@@ -30,6 +34,9 @@ from: ubuntu:20.04
 
     # clean up
     rm $JULIA_TARBALL
+
+    # setup packages
+    julia -e 'using Pkg; Pkg.init()'
 
 %runscript
     julia test.jl
