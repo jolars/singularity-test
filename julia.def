@@ -13,49 +13,12 @@ from: julia:1.4.2-buster
         git \
         libqt5widgets5
 
-    # apt-get update
-    # apt-get install -y \
-    #     ca-certificates \
-    #     wget \
-    #     hdf5-tools \
-    #     locales \
-    #     libopenblas-dev \
-    #
-    # update-ca-certificates
-    #
-    # # install julia
-    # wget https://julialang-s3.julialang.org/bin/linux/x64/$JULIA_VER_MAJORMINOR/$JULIA_TARBALL
-    # tar -xvzf $JULIA_TARBALL --no-same-permissions
-    # mv /julia-$JULIA_VER /opt/
-    # ln -s /opt/julia-$JULIA_VER/bin/julia /usr/local/bin/julia
-
-    # setup packages
-
-    #mkdir -p $JULIA_DEPOT_PATH
-    #chmod -R a+rX $JULIA_DEPOT_PATH
-
     git clone https://github.com/jolars/singularity-test
     cd singularity-test
 
     julia --project=. -e "using Pkg; Pkg.activate(\".\"); Pkg.instantiate(); Pkg.build(); Pkg.precompile()"
 
     chmod -R 777 /opt/julia
-
-#     /usr/local/julia/bin/julia --project=. --eval 'import Pkg; Pkg.Registry.add(Pkg.RegistrySpec(; url="https://github.com/JuliaRegistries/General.git")); Pkg.Registry.add(Pkg.RegistrySpec(; url="https://github.com/BioJulia/BioJuliaRegistry.git")); Pkg.activate("."); Pkg.instantiate()'
-#     export PATH="/usr/local/julia/bin:${PATH}"
-#     export PATH=/usr/local/src/qaf_demux/Julia/QafDemux/bin:"${PATH}"
-#     # Test and trigger pre-compiling?
-#     qaf_demux.sh --help > /dev/null
-#     apt-get remove -y git
-#     apt-get autoremove -y
-#     apt-get clean -y
-#
-# %environment
-#     export LC_ALL=C
-#     export PATH=/usr/local/src/qaf_demux/Julia/QafDemux/bin:"${PATH}"
-
-    # clean up
-    #rm $JULIA_TARBALL
 
 %runscript
     julia test.jl
