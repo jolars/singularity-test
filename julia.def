@@ -39,7 +39,7 @@ from: julia:1.4.2-buster
 
     julia --project=. -e "using Pkg; Pkg.activate(\".\"); Pkg.instantiate(); Pkg.build(); Pkg.precompile()"
 
-    chmod -R 645 /opt/julia
+    chmod -R 777 /opt/julia
 
 #     /usr/local/julia/bin/julia --project=. --eval 'import Pkg; Pkg.Registry.add(Pkg.RegistrySpec(; url="https://github.com/JuliaRegistries/General.git")); Pkg.Registry.add(Pkg.RegistrySpec(; url="https://github.com/BioJulia/BioJuliaRegistry.git")); Pkg.activate("."); Pkg.instantiate()'
 #     export PATH="/usr/local/julia/bin:${PATH}"
