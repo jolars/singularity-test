@@ -5,6 +5,13 @@ Pkg.instantiate()
 
 using Plots
 using CSV
+#using GR
+using DataFrames
 
-plot(1:10, 1:10)
-savefig("~/singularity-test/test.pdf")
+#gr()
+
+#plot(1:10, 1:10)
+#savefig("test.pdf")
+
+a = DataFrame(a = 1:3)
+CSV.write("a.csv", a)
