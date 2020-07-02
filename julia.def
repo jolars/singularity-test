@@ -22,6 +22,9 @@ from: ubuntu:20.04
     mv /julia-$JULIA_VER /opt/
     ln -s /opt/julia-$JULIA_VER/bin/julia /usr/local/bin/julia
 
+    # create some necessary folders
+    mkdir ~/.julia
+
     # clean up
     rm $JULIA_TARBALL
 
