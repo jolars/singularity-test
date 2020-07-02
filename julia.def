@@ -10,7 +10,8 @@ from: julia:1.4.2-buster
 
     apt-get update
     apt-get install -y \
-        git
+        git \
+        libqt5widgets5
 
     # apt-get update
     # apt-get install -y \
